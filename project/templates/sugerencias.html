@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+	<br>
+	<h1 style="text-align: center;">Bienvenido a Sugerencias</h1> <hr>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 borde">
+				<a href="{{ url_for('deporte') }}" style="text-decoration: none;">
+					<picture>
+						<img src="{{url_for('static', filename='deporte.png')}}" class="img-fluid img-thumbnail">
+					</picture>
+					<h3 class="jumbotron-heading" style="color:black; text-align:center;">Deporte y actividad física</h3>
+				</a>
+			</div>
+
+			<div class="col-sm-4 borde">
+				<a href="{{ url_for('familiayamigos') }}" style="text-decoration: none;">
+					<picture>
+						<img src="{{url_for('static', filename='familia.png')}}" class="img-fluid img-thumbnail">
+					</picture>
+					<h3 class="jumbotron-heading" style="color:black; text-align:center;">Familia y Amigos</h3>
+				</a>
+			</div>
+			<div class="col-sm-4 borde">
+				<a href="{{ url_for('relajacion') }}" style="text-decoration: none;">
+					<picture>
+						<img src="{{url_for('static', filename='relax.jpg')}}" class="img-fluid img-thumbnail">
+					</picture>
+					<h3 class="jumbotron-heading" style="color:black; text-align:center;">Relajación</h3>
+				</a>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-4 borde">
+				<a href="{{ url_for('alimentacion') }}" class="a_thumbnail" style="text-decoration: none;">
+					<picture>
+						<img src="{{url_for('static', filename='alimentacion.jpg')}}" class="img-fluid img-thumbnail">
+					</picture>
+					<h3 class="jumbotron-heading" style="color:black; text-align:center;">Alimentación</h3>
+				</a>
+			</div>
+			<div class="col-sm-4 borde">
+				<a href="{{ url_for('autocuidado') }}" style="text-decoration: none;">
+					<picture>
+						<img src="{{url_for('static', filename='meditar.jpeg')}}" class="img-fluid img-thumbnail">
+					</picture>
+					<h3 class="jumbotron-heading" style="color:black; text-align:center;">Autocuidado</h3>
+				</a>
+			</div>
+			<div class="col-sm-4 borde">
+				<a href="{{ url_for('recursos') }}" style="text-decoration: none;">
+					<picture>
+						<img src="{{url_for('static', filename='recursos.jpg')}}" class="img-fluid img-thumbnail">
+					</picture>
+					<h3 class="jumbotron-heading" style="color:black; text-align:center;">Recursos</h3>
+				</a>
+			</div>
+		</div>
+
+	</div>
+	<hr>
+
+{% endblock %}

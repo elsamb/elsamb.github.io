@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<style>
+body {
+  background-image: url('static/fondo-home1.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+</style>
+ <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1>¡Bienvenido a la aplicación web de Hera Technology!</h1>
+          <br>
+          {% if current_user.is_authenticated %}
+          	<div><a href="{{url_for('mood')}}" class="btn btn-primary" style="text-align: center; width: 33.33%; margin-left: 50%; transform: translateX(-50%);">Comenzar</a></div>
+          {% else %}
+          	<div><a href="{{url_for('login')}}" class="btn btn-primary" style="text-align: center; width: 33.33%; margin-left: 50%; transform: translateX(-50%);">Comenzar</a></div>
+          {% endif %}
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img">
+          <img src="{{url_for('static', filename='portatil-home.png')}}" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+{% endblock %}

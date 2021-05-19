@@ -1,0 +1,50 @@
+{% extends 'admin/base.html' %}
+
+{% block access_control %}
+{% if current_user.is_authenticated %}
+<!-- User Account: style can be found in dropdown.less -->
+
+<li class="dropdown user user-menu" style="text-decoration: none; list-style:none; color: white;">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;">
+    <i class="fa fa-user-circle" style="color: white; font-size: 1.4em;"></i>
+    <span class="hidden-xs">
+     {% if current_user.username %}
+     {{ current_user.username }}
+     {% else %}
+     {{ current_user.email }}
+     {% endif %}                 
+   </span>
+ </a>
+ <ul class="dropdown-menu">
+  <!-- User image -->
+  <img src="{{ current_user.avatar(128) }}" style="justify-content: center;">
+  <li class="user-header">
+    <p style="text-align: center;">
+      {% if current_user.username %}
+      {{ current_user.username }}
+      {% else %}
+      {{ current_user.email }}
+      {% endif %}
+      <br>
+      {% if current_user.has_role("admin") %}
+      <small>Administrador</small>
+      {% else %}
+      <small>Médico</small>
+      {% endif %}
+    </p>
+  </li>
+  <!-- Menu Footer-->
+  <li class="user-footer">
+    <div class="pull-left">
+      <a href="{{ url_for('user', username=current_user.username) }}" class="btn btn-default btn-flat">Profile</a>
+    </div>
+    <div class="pull-right">
+      <a href="{{ url_for('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+    </div>
+  </li>
+</ul>
+</li>
+
+
+{% endif %}
+{% endblock %}

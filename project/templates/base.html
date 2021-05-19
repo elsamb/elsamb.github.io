@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> {% if title %}{{ title }} {% endif %}</title>
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.0.1/tailwind.min.css" rel="stylesheet">
+    <!-- Import our custom stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <!-- Vendor CSS Files -->
+    <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!--Favicon-->
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='Logonofondo.png')}}">
+    <style type="text/css">
+    /* ============ desktop view dropdown menu ============ */
+      @media all and (min-width: 992px) {
+        .navbar .nav-item .dropdown-menu{ display: none; }
+        .navbar .nav-item:hover .nav-link{   }
+        .navbar .nav-item:hover .dropdown-menu{ display: block; }
+        .navbar .nav-item .dropdown-menu{ margin-top:0; }
+      } 
+    /* ============ desktop view .end// ============ */
+    </style>
+    <!--Navigation bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{ url_for('home') }}"><img src="{{url_for('static', filename='Logonofondo.png')}}" alt="" width="30" height="24" class="d-inline-block align-top">Hera</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <!--Left side-->
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="{{ url_for('mood') }}">Registro</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link" href="{{ url_for('sugerencias') }}">Sugerencias</a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="{{ url_for('deporte') }}">Deporte</a></li>
+                          <li><a class="dropdown-item" href="{{ url_for('familiayamigos') }}">Familia y amigos</a></li>
+                          <li><a class="dropdown-item" href="{{ url_for('relajacion') }}">Relajación</a></li>
+                          <li><a class="dropdown-item" href="{{ url_for('alimentacion') }}">Alimentación</a></li>
+                          <li><a class="dropdown-item" href="{{ url_for('autocuidado') }}">Autocuidado</a></li>
+                      </ul>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('social') }}">Social</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('explore') }}">Explorar</a>
+                  </li>
+              </ul>
+              <!--Right side-->
+              <ul class="nav navbar-nav navbar-right">
+                  {% if current_user.is_anonymous %}
+                      <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Registrarse</a></li>
+                  {% else %}
+                      <li class="nav-item"><a class="nav-link" href="{{ url_for('user', username=current_user.username) }}">Perfil</a></li>
+                      {% if current_user.has_role("admin") %}
+                          <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboardmedicos') }}">Pacientes</a></li>
+                      {% endif %}
+                      {% if current_user.has_role("admin") %}
+                          <li class="nav-item"><a class="nav-link" href="{{ url_for('admin') }}">Admin</a></li>
+                      {% endif %}
+                      <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Cerrar sesión</a></li>
+                  {% endif %}
+              </ul>
+            </div>
+        </div>
+    </nav>
+</head>
+
+
+
+<body>
+  <!--Messages and alerts-->
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <!--App content for inheritance, application content needs to be provided in the app_content block-->
+        {% block app_content %}{% endblock %}
+    </div>
+
+    <!--Chatbot button--> 
+    <button class="rounded-circle border-0 chatbot">
+        <a href="https://chats.landbot.io/v3/H-863208-7M6IK0JIF6WW5FVQ/index.html" target="_blank">
+            <img src="{{url_for('static', filename='logo.png')}}" style="width:50px;">
+        </a>
+    </button>
+
+</body>
+
+<br>
+
+<footer>&copy; 2021 Hera Technology</footer>
+<!--JavaScript Bootstrap file-->
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<!--Custom Javascript-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</html>

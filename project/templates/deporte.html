@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='base.css')}}">
+{% endblock styles %}
+
+{% block app_content %}
+{{super()}}
+
+	<br>
+	<h1 style="text-align: center;">Deporte</h1> <!-- contenido dinámico -->
+	<br>
+	<nav>
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true">Todo</button>
+			<button class="nav-link" id="nav-articles-tab" data-bs-toggle="tab" data-bs-target="#nav-articles" type="button" role="tab" aria-controls="nav-articles" aria-selected="false">Artículos</button>
+			<button class="nav-link" id="nav-videos-tab" data-bs-toggle="tab" data-bs-target="#nav-videos" type="button" role="tab" aria-controls="nav-videos" aria-selected="false">Vídeos</button>
+			<button class="nav-link" id="nav-noticias-tab" data-bs-toggle="tab" data-bs-target="#nav-noticias" type="button" role="tab" aria-controls="nav-noticias" aria-selected="false">Noticias</button>
+		</div>
+	</nav>
+	<div class="tab-content" id="nav-tabContent">
+		<div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+			<br>
+			<div class="card-group">	
+				<div class="row row-cols-1 row-cols-md-3 g-4">
+				{% for item in data %}
+					<div class="col">
+						<div class="card">
+							<a href="{{ item[2] }}" target="_blank"><img class="card-img-top" src="{{ item[7] }}" alt="Pincha para ir al enlace"></a>
+							<div class="card-body">
+								<h5 class="card-title">{{ item[1] }}</h5>
+								<p class="card-text"><em>{{ item[3] }}</em></p>
+								<p class="card-text">{{ item[4] }}</p>
+								{% if item[9] is not none %}
+									{% for tag in item[9].split(",") %}
+										<span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">{{ tag }}</span>
+									{% endfor %}
+								{% endif %}
+								<a href="{{item[2]}}" class="btn btn-primary" style="text-align:center;" target="_blank">Leer más</a>
+							</div>
+						</div>
+					</div>	
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+
+		<div class="tab-pane fade" id="nav-articles" role="tabpanel" aria-labelledby="nav-articles-tab">
+			<br>
+			<div class="card-group">	
+				<div class="row row-cols-1 row-cols-md-3 g-4">
+				{% for item in art %}
+					<div class="col">
+						<div class="card">
+							<a href="{{ item[2] }}" target="_blank"><img class="card-img-top" src="{{ item[7] }}" alt="Pincha para ir al enlace"></a>
+							<div class="card-body">
+								<h5 class="card-title">{{ item[1] }}</h5>
+								<p class="card-text"><em>{{ item[3] }}</em></p>
+								<p class="card-text">{{ item[4] }}</p>
+								<a href="{{item[2]}}" class="btn btn-primary" style="text-align:center;" target="_blank">Leer más</a>
+							</div>
+						</div>
+					</div>	
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+
+		<div class="tab-pane fade" id="nav-videos" role="tabpanel" aria-labelledby="nav-videos-tab">
+			<br>
+			<div class="card-group">	
+				<div class="row row-cols-1 row-cols-md-3 g-4">
+				{% for item in vid %}
+					<div class="col">
+						<div class="card">
+							<a href="{{ item[2] }}" target="_blank"><img class="card-img-top" src="{{ item[7] }}" alt="Pincha para ir al enlace"></a>
+							<div class="card-body">
+								<h5 class="card-title">{{ item[1] }}</h5>
+								<p class="card-text"><em>{{ item[3] }}</em></p>
+								<p class="card-text">{{ item[4] }}</p>
+								<a href="{{item[2]}}" class="btn btn-primary" style="text-align:center;" target="_blank">Ver vídeo</a>
+							</div>
+						</div>
+					</div>	
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+
+		<div class="tab-pane fade" id="nav-noticias" role="tabpanel" aria-labelledby="nav-noticias-tab">
+			<br>
+			<div class="card-group">	
+				<div class="row row-cols-1 row-cols-md-3 g-4">
+				{% for item in new %}
+					<div class="col">
+						<div class="card">
+							<a href="{{ item[2] }}" target="_blank"><img class="card-img-top" src="{{ item[7] }}" alt="Pincha para ir al enlace"></a>
+							<div class="card-body">
+								<h5 class="card-title">{{ item[1] }}</h5>
+								<p class="card-text"><em>{{ item[3] }}</em></p>
+								<p class="card-text">{{ item[4] }}</p>
+								<a href="{{item[2]}}" class="btn btn-primary" style="text-align:center;" target="_blank">Leer más</a>
+							</div>
+						</div>
+					</div>	
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+
+{% endblock %}

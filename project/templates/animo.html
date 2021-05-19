@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<body class="animobody">
+    <br>
+    <h1>¡Bienvenido a tu registro!</h1>
+    <br>
+	<div id="animo">
+		<h3>Ánimo</h3>
+		<br>
+		<div class="row justify-content-center">
+			<div class=" rating" name="star">
+				<input type="radio" name="star" id="star1">
+				<label for="star1">
+					<img src="{{url_for('static', filename='5.png')}}" />
+					<h4>¡Genial!</h4>
+				</label>
+				<input type="radio" name="star" id="star2">
+				<label for="star2">
+					<img src="static/4.png">
+					<h4>Bien</h4>
+				</label>
+				<input type="radio" name="star" id="star3">
+				<label for="star3">
+					<img src="static/3.png">
+					<h4>Regular</h4>
+				</label>
+				<input type="radio" name="star" id="star4">
+				<label for="star4">
+					<img src="static/2.png">
+					<h4>Mal</h4>
+				</label>
+				<input type="radio" name="star" id="star5">
+				<label for="star5">
+					<img src="static/1.png">
+					<h4>Fatal</h4>
+				</label>
+			</div>
+			<div class="col-md-4">
+				{{wtf.quick_form(form)}}
+			</div>
+		</div>
+		<br>
+	</div>
+
+	<div id="sueño">
+		<h3>Sueño</h3>
+		<br>
+			<div class="row justify-content-center">
+				<div class="col-md-4">
+					{{ wtf.quick_form(form2) }}
+				</div>
+			</div>
+		<br>
+	</div>
+    
+	<div class="energia" id="energia"> 
+		<br>
+		<h3>Energía</h3>
+		<br>
+			<div class="row justify-content-center">
+				<div class="col-md-4">
+					{{ wtf.quick_form(form3) }}
+				</div>
+			</div>
+		<br>
+	</div>
+    
+	<div> 
+		<br>
+		<h3>Actividades</h3>
+		<p class="pregunta">¿Qué has hecho hoy?</p>
+		<br>
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<form method="post" id="multiple_select_form">
+						<label>
+							<input type="checkbox" name="test" value="small">
+							<img src="static/pintar.png" class="actividades">
+							<h4 style="text-align: center;">Pintar</h4>
+						</label>
+						<label>
+							<input type="checkbox" name="test" value="small">
+							<img src="static/museo.png" class="actividades">
+							<h4 style="text-align: center;">Museo</h4>
+						</label>
+						<label>
+							<input type="checkbox" name="test" value="small">
+							<img src="static/musica.png" class="actividades">
+							<h4 style="text-align: center;">Música</h4>
+						</label>
+						<label>
+							<input type="checkbox" name="test" value="small">
+							<img src="static/trabajar.png" class="actividades">
+							<h4 style="text-align: center;">Trabajar</h4>
+						</label>
+						<label>
+							<input type="checkbox" name="test" value="small">
+							<img src="static/meditar.png" class="actividades">
+							<h4 style="text-align: center;">Meditar</h4>
+						</label>
+						<label>
+							<input type="checkbox" name="test" value="small">
+							<img src="static/leer.png" class="actividades">
+							<h4 style="text-align: center;">Leer</h4>
+						</label>
+						<label>
+							<input type="checkbox" name="test" value="small">
+							<img src="static/naturaleza.png" class="actividades">
+							<h4 style="text-align: center;">Naturaleza</h4>
+						</label>
+						<label>
+							<input type="checkbox" name="test" value="small">
+							<img src="static/social.png" class="actividades">
+							<h4 style="text-align: center;">Social</h4>
+						</label>
+						<label>
+							<input type="checkbox" name="test" value="small">
+							<img src="static/deporte_.png" class="actividades">
+							<h4 style="text-align: center;">Deporte</h4>
+						</label>
+					</form>
+				</div>
+			</div>
+		<br>
+	</div>
+
+	<br>
+    <h3>Diario</h3>
+    <br>
+	    <div class="row justify-content-center">
+	        <div class="col-md-8">
+	            {{ wtf.quick_form(form4) }}
+	        </div>
+	    </div>
+    <br>
+
+	
+</body>
+{% endblock %}
+

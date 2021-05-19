@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Pacientes</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter " id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Paciente
+                </th>
+                <th>
+                  Diagnóstico
+                </th>
+                <th>
+                  Última conexión
+                </th>
+                <th>
+                  Último ánimo
+                </th>
+                <th></th>
+            </thead>
+            {% for user in users%}
+            <tbody>
+              <tr>
+                <td>
+                  {{user.username}}
+                </td>
+                <td>
+                  -
+                </td>
+                <td>
+                  {{ moment(user.last_seen).format('LLL') }}
+                </td>
+                <td>
+                  -
+                </td>
+                <td>
+                  <a href="{{ url_for('user', username=user.username) }}">Ver</a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

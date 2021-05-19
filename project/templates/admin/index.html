@@ -1,0 +1,21 @@
+{% extends 'admin/master.html' %}
+
+{% block head_css %}
+{{ super() }}
+{% endblock head_css %}
+
+{% block body %}
+{{ super() }}
+    <h1>Bienvenido Administrador {{ current_user.username }}</h1>
+    <p class="lead">
+      Basic SQLAlchemy model views.
+    </p>
+    <p>
+      This example shows how to add basic CRUD-views for your SQLAlchemy models.
+    </p>
+    <p>
+      The views are generated automatically, but it is perfectly possible to customize them to suit your needs.
+    </p>
+    <a class="btn btn-primary" href="/"><i class="icon-arrow-left icon-white"></i> Back</a>
+
+{% endblock body %}
